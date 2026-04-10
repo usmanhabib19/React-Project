@@ -14,8 +14,8 @@ const Hero = () => {
                         <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</Text>
                     </Col>
                 </Row>
-                <div className='d-flex justify-content-center align-items-center'>
-                    <Pagination defaultCurrent={1} total={10} />;
+                <div className='pt-5 d-flex justify-content-center align-items-center'>
+                    <Pagination defaultCurrent={1} total={50} />;
                 </div>
             </div>
         </div>
