@@ -15,7 +15,7 @@ const Hero = () => {
                     </Col>
                 </Row>
                 <div className='d-flex justify-content-center align-items-center'>
-                    <Pagination defaultCurrent={6} total={500} />;
+                    <Pagination defaultCurrent={1} total={10} />;
                 </div>
             </div>
         </div>
