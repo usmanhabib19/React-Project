@@ -5,7 +5,7 @@ const { Title, Paragraph, Text } = Typography
 
 const Hero = () => {
     return (
-        <div>
+        <main className="h-100vh">
             <div className="container">
                 <Row>
                     <Col span={24}>
@@ -18,7 +18,7 @@ const Hero = () => {
                     <Pagination defaultCurrent={1} total={50} />;
                 </div>
             </div>
-        </div>
+        </main>
     )
 }
 
