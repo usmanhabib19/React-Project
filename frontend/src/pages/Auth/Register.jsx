@@ -56,7 +56,7 @@ const Register = () => {
             form.resetFields()
 
             setTimeout(() => {
-                navigate('/login')
+                navigate('/auth/login')
             }, 1000)
 
         } catch (err) {
