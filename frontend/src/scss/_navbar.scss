@@ -1,0 +1,143 @@
+/* Base navbar — transparent on hero */
+.custom-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: transparent !important;
+    transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    padding: 0.75rem 0;
+}
+
+/* Scrolled — glassmorphism */
+.custom-navbar.navbar-scrolled {
+    background: rgba(10, 10, 20, 0.80) !important;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Logo animation glow */
+.custom-navbar .navbar-brand {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #a78bfa, #6c63ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: opacity 0.2s;
+}
+
+.custom-navbar .navbar-brand:hover {
+    opacity: 0.85;
+}
+
+/* Nav links */
+.custom-navbar .nav-link {
+    position: relative;
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem !important;
+    transition: color 0.2s ease;
+}
+
+.custom-navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 2px;
+    background: linear-gradient(90deg, #6c63ff, #a78bfa);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+    color: #fff !important;
+}
+
+.custom-navbar .nav-link:hover::after,
+.custom-navbar .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+/* Dropdown */
+.custom-navbar .dropdown-menu {
+    background: rgba(15, 15, 30, 0.95) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    padding: 0.5rem;
+    margin-top: 0.5rem !important;
+}
+
+.custom-navbar .dropdown-item {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.custom-navbar .dropdown-item:hover {
+    background: rgba(108, 99, 255, 0.2) !important;
+    color: #fff !important;
+}
+
+/* Buttons */
+.custom-navbar .btn-success {
+    background: linear-gradient(135deg, #1D9E75, #0f6e56) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 0.8rem !important;
+    padding: 0.35rem 1rem !important;
+}
+
+.custom-navbar .btn-info {
+    background: linear-gradient(135deg, #378ADD, #185FA5) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 0.8rem !important;
+    padding: 0.35rem 1rem !important;
+    color: #fff !important;
+}
+
+.custom-navbar .btn-danger {
+    background: linear-gradient(135deg, #E24B4A, #A32D2D) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 0.8rem !important;
+    padding: 0.35rem 1rem !important;
+}
+
+/* Nav link item entrance animation — starts hidden */
+.nav-link-item {
+    opacity: 0;
+}
+
+/* Mobile toggler */
+.custom-navbar .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.custom-navbar .navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+/* Mobile menu */
+@media (max-width: 991px) {
+    .custom-navbar .navbar-collapse.show {
+        background: rgba(10, 10, 20, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 1rem;
+        border-radius: 12px;
+        margin-top: 0.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+}

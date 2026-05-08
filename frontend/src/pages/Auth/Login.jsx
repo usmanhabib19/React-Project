@@ -5,6 +5,9 @@ import React, { useState } from 'react'
 import { Row, Col, Typography, Form, Input, Button, message, Card, Divider, Checkbox } from 'antd'
 import { MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone, LoginOutlined } from '@ant-design/icons'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/Auth'
+import GridDistortion from '../../components/Ballpits/GridDistortion'
+import GradientText from '../../components/GradientText'
 
 const { Title, Text } = Typography
 
@@ -12,6 +15,8 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
     const [form] = Form.useForm()
     const navigate = useNavigate()
+    const { dispatch } = useAuth()
+
 
     const onFinish = (values) => {
         setLoading(true)
@@ -51,11 +56,14 @@ const Login = () => {
                 localStorage.removeItem('rememberMe')
             }
 
+            dispatch({ type: "LOGIN", payload: sessionUser })
+
+
             message.success(`Welcome back, ${matchedUser.name}!`)
             form.resetFields()
 
             setTimeout(() => {
-                navigate('/dashboard') // change to your route
+                navigate('/') // change to your route
             }, 1000)
 
         } catch (err) {
@@ -67,8 +75,19 @@ const Login = () => {
 
     return (
         <main className="login-bg">
-            <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
-                <Col xs={23} sm={18} md={14} lg={10} xl={8}>
+            {/* Background Effect */}
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+                <GridDistortion
+                    imageSrc="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
+                    grid={15}
+                    mouse={0.1}
+                    strength={0.15}
+                    relaxation={0.9}
+                />
+            </div>
+
+            <Row justify="center" align="middle" style={{ minHeight: '100vh', width: '100%', position: 'relative', zIndex: 1, padding: '24px 0' }}>
+                <Col xs={23} sm={18} md={12} lg={8} xl={6}>
 
                     <Card className="login-card" bordered={false}>
 
@@ -77,8 +96,12 @@ const Login = () => {
                             <div className="login-icon-circle">
                                 <LoginOutlined />
                             </div>
-                            <Title level={3} className="login-title">Welcome Back</Title>
-                            <Text className="login-subtitle">Sign in to your account</Text>
+                            <Title level={2} className="login-title">
+                                <GradientText colors={["#6c63ff", "#a78bfa", "#6c63ff"]} animationSpeed={3}>
+                                    Welcome Back
+                                </GradientText>
+                            </Title>
+                            <Text className="login-subtitle">Sign in to continue your journey</Text>
                         </div>
 
                         {/* Form */}
@@ -133,13 +156,14 @@ const Login = () => {
                                 />
                             </Form.Item>
 
-                            {/* Remember Me */}
-                            <Form.Item name="remember" valuePropName="checked" style={{ marginBottom: 20 }}>
-                                <Checkbox>Remember me</Checkbox>
-                            </Form.Item>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+                                <Form.Item name="remember" valuePropName="checked" noStyle>
+                                    <Checkbox>Remember me</Checkbox>
+                                </Form.Item>
+                            </div>
 
                             {/* Submit */}
-                            <Form.Item style={{ marginBottom: 8 }}>
+                            <Form.Item style={{ marginBottom: 16 }}>
                                 <Button
                                     type="primary"
                                     htmlType="submit"
@@ -147,15 +171,15 @@ const Login = () => {
                                     block
                                     className="login-btn"
                                 >
-                                    {loading ? 'Signing in...' : 'Login'}
+                                    {loading ? 'Signing in...' : 'Login Now'}
                                 </Button>
                             </Form.Item>
 
                             {/* Register Link */}
                             <Divider className="login-divider" />
-                            <div className="login-register-link">
-                                <Text type="secondary">Don't have an account? </Text>
-                                <Link to="/auth/register">Create one here</Link>
+                            <div className="login-register-link" style={{ textAlign: 'center' }}>
+                                <Text type="secondary">New here? </Text>
+                                <Link to="/auth/register">Create an account</Link>
                             </div>
 
                         </Form>

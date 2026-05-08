@@ -1,303 +1,154 @@
-/* ===========================
-   Register Page - register.css
-   Place in: src/pages/Auth/register.css
-   =========================== */
+/* Premium Auth Styles */
 
-/* Background */
-.register-bg {
-    background: #0F2027;
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    min-height: 100vh;
-    padding: 24px 0;
-}
-
-/* Card */
-.register-card {
-    border-radius: 16px !important;
-    border: none !important;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35) !important;
-    background: rgba(255, 255, 255, 0.97) !important;
-    padding: 8px !important;
-}
-
-/* Icon Circle */
-.register-icon-circle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #2C5364, #0F2027);
+.register-bg,
+.login-bg {
+    width: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12px;
-    box-shadow: 0 4px 16px rgba(15, 32, 39, 0.4);
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    /* Fallback */
 }
 
-.register-icon-circle .anticon {
-    font-size: 28px;
-    color: #ffffff;
+/* Glassmorphism Card */
+.register-card,
+.login-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+    padding: 1.5rem !important;
+    color: #fff !important;
 }
 
-/* Title */
-.register-title {
-    margin: 0 0 4px !important;
-    color: #0F2027 !important;
-    font-weight: 700 !important;
-}
-
-/* Subtitle */
-.register-subtitle {
-    color: #7a8a99 !important;
-    font-size: 14px;
-}
-
-/* Header wrapper */
+.login-header,
 .register-header {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 2rem;
 }
 
-/* Form Labels */
-.register-form .ant-form-item-label>label {
-    font-weight: 600;
-    color: #203A43;
-    font-size: 13.5px;
-}
-
-/* Inputs */
-.register-form .ant-input,
-.register-form .ant-input-password,
-.register-form .ant-input-affix-wrapper {
-    border-radius: 8px !important;
-    border: 1.5px solid #d9d9d9 !important;
-    transition: all 0.25s ease;
-}
-
-.register-form .ant-input:focus,
-.register-form .ant-input-affix-wrapper:focus,
-.register-form .ant-input-affix-wrapper-focused {
-    border-color: #2C5364 !important;
-    box-shadow: 0 0 0 3px rgba(44, 83, 100, 0.12) !important;
-}
-
-.register-form .ant-input:hover,
-.register-form .ant-input-affix-wrapper:hover {
-    border-color: #203A43 !important;
-}
-
-/* Prefix Icons */
-.register-form .ant-input-prefix .anticon {
-    color: #9eadb7;
-}
-
-/* Submit Button */
-.register-btn {
-    height: 46px !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    background: linear-gradient(to right, #2C5364, #0F2027) !important;
-    border: none !important;
-    box-shadow: 0 4px 14px rgba(15, 32, 39, 0.35) !important;
-    transition: opacity 0.2s ease, transform 0.15s ease !important;
-}
-
-.register-btn:hover {
-    opacity: 0.88 !important;
-    transform: translateY(-1px) !important;
-}
-
-.register-btn:active {
-    transform: translateY(0px) !important;
-}
-
-/* Divider */
-.register-divider {
-    margin: 14px 0 !important;
-    border-color: #e8edf0 !important;
-}
-
-/* Login Link Row */
-.register-login-link {
-    text-align: center;
-    font-size: 14px;
-}
-
-.register-login-link a {
-    color: #2C5364;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.register-login-link a:hover {
-    color: #0F2027;
-    text-decoration: underline;
-}
-
-/* Error messages */
-.register-form .ant-form-item-explain-error {
-    font-size: 12.5px;
-    color: #e74c3c;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .register-card {
-        border-radius: 12px !important;
-        padding: 4px !important;
-    }
-
-    .register-icon-circle {
-        width: 50px;
-        height: 50px;
-    }
-
-    .register-icon-circle .anticon {
-        font-size: 22px;
-    }
-}
-
-// login page css
-.login-bg {
-    background: #0F2027;
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    min-height: 100vh;
-    padding: 24px 0;
-}
-
-.login-card {
-    border-radius: 16px !important;
-    border: none !important;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35) !important;
-    background: rgba(255, 255, 255, 0.97) !important;
-    padding: 8px !important;
-}
-
-.login-icon-circle {
-    width: 60px;
-    height: 60px;
+.login-icon-circle,
+.register-icon-circle {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(167, 139, 250, 0.2));
     border-radius: 50%;
-    background: linear-gradient(135deg, #2C5364, #0F2027);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12px;
-    box-shadow: 0 4px 16px rgba(15, 32, 39, 0.4);
+    margin: 0 auto 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.login-icon-circle .anticon {
+.login-icon-circle .anticon,
+.register-icon-circle .anticon {
     font-size: 28px;
-    color: #ffffff;
+    color: #6c63ff;
+    filter: drop-shadow(0 0 8px rgba(108, 99, 255, 0.5));
 }
 
-.login-title {
-    margin: 0 0 4px !important;
-    color: #0F2027 !important;
-    font-weight: 700 !important;
+.login-title,
+.register-title {
+    color: #fff !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem !important;
 }
 
-.login-subtitle {
-    color: #7a8a99 !important;
-    font-size: 14px;
+.login-subtitle,
+.register-subtitle {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.95rem;
 }
 
-.login-header {
-    text-align: center;
-    margin-bottom: 28px;
-}
+/* Form Styling */
+.login-form,
+.register-form {
+    .ant-form-item-label>label {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 500;
+    }
 
-.login-form .ant-form-item-label>label {
-    font-weight: 600;
-    color: #203A43;
-    font-size: 13.5px;
-}
-
-.login-form .ant-input,
-.login-form .ant-input-password,
-.login-form .ant-input-affix-wrapper {
-    border-radius: 8px !important;
-    border: 1.5px solid #d9d9d9 !important;
-    transition: all 0.25s ease;
-}
-
-.login-form .ant-input:focus,
-.login-form .ant-input-affix-wrapper:focus,
-.login-form .ant-input-affix-wrapper-focused {
-    border-color: #2C5364 !important;
-    box-shadow: 0 0 0 3px rgba(44, 83, 100, 0.12) !important;
-}
-
-.login-form .ant-input:hover,
-.login-form .ant-input-affix-wrapper:hover {
-    border-color: #203A43 !important;
-}
-
-.login-form .ant-input-prefix .anticon {
-    color: #9eadb7;
-}
-
-.login-btn {
-    height: 46px !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    background: linear-gradient(to right, #2C5364, #0F2027) !important;
-    border: none !important;
-    box-shadow: 0 4px 14px rgba(15, 32, 39, 0.35) !important;
-    transition: opacity 0.2s ease, transform 0.15s ease !important;
-}
-
-.login-btn:hover {
-    opacity: 0.88 !important;
-    transform: translateY(-1px) !important;
-}
-
-.login-btn:active {
-    transform: translateY(0px) !important;
-}
-
-.login-divider {
-    margin: 14px 0 !important;
-    border-color: #e8edf0 !important;
-}
-
-.login-signup-link {
-    text-align: center;
-    font-size: 14px;
-}
-
-.login-signup-link a {
-    color: #2C5364;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.login-signup-link a:hover {
-    color: #0F2027;
-    text-decoration: underline;
-}
-
-.login-form .ant-form-item-explain-error {
-    font-size: 12.5px;
-    color: #e74c3c;
-}
-
-@media (max-width: 480px) {
-    .login-card {
+    .ant-input,
+    .ant-input-password,
+    .ant-input-affix-wrapper {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 12px !important;
-        padding: 4px !important;
+        color: #fff !important;
+        padding: 0.6rem 1rem !important;
+        transition: all 0.3s ease;
+
+        input {
+            background: transparent !important;
+            color: #fff !important;
+        }
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        &:hover,
+        &:focus,
+        &-focused {
+            border-color: #6c63ff !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2) !important;
+        }
     }
 
-    .login-icon-circle {
-        width: 50px;
-        height: 50px;
+    .ant-input-prefix {
+        color: rgba(255, 255, 255, 0.4);
+        margin-right: 8px;
     }
 
-    .login-icon-circle .anticon {
-        font-size: 22px;
+    .ant-checkbox-wrapper {
+        color: rgba(255, 255, 255, 0.6) !important;
     }
+}
+
+/* Buttons */
+.login-btn,
+.register-btn {
+    height: 52px !important;
+    background: linear-gradient(90deg, #6c63ff, #a78bfa) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4) !important;
+    transition: all 0.3s ease !important;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(108, 99, 255, 0.6) !important;
+        opacity: 0.95;
+    }
+}
+
+.login-forgot,
+.login-register-link a,
+.register-login-link a {
+    color: #a78bfa !important;
+    font-weight: 600;
+    transition: color 0.2s;
+
+    &:hover {
+        color: #fff !important;
+    }
+}
+
+.login-divider,
+.register-divider {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.login-register-link,
+.register-login-link {
+    color: rgba(255, 255, 255, 0.5) !important;
 }
