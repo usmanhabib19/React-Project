@@ -1,0 +1,84 @@
+.light-rays-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% -20%, #1a1a2e 0%, #000000 100%);
+    z-index: 0;
+}
+
+.light-source {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.4) 0%, rgba(167, 139, 250, 0.2) 50%, transparent 80%);
+    filter: blur(60px);
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.ray {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    width: 100px;
+    height: 200%;
+    background: linear-gradient(to bottom, rgba(108, 99, 255, 0.2) 0%, transparent 100%);
+    transform-origin: top center;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    filter: blur(25px);
+}
+
+.ray-1 { transform: translateX(-50%) rotate(-30deg); animation: rayRotate 20s infinite alternate ease-in-out; opacity: 0.6; }
+.ray-2 { transform: translateX(-50%) rotate(-15deg); animation: rayRotate 25s infinite alternate ease-in-out -5s; opacity: 0.5; }
+.ray-3 { transform: translateX(-50%) rotate(0deg); animation: rayRotate 30s infinite alternate ease-in-out -10s; opacity: 0.7; }
+.ray-4 { transform: translateX(-50%) rotate(15deg); animation: rayRotate 22s infinite alternate ease-in-out -15s; opacity: 0.5; }
+.ray-5 { transform: translateX(-50%) rotate(30deg); animation: rayRotate 28s infinite alternate ease-in-out -2s; opacity: 0.6; }
+.ray-6 { transform: translateX(-50%) rotate(-45deg); animation: rayRotate 35s infinite alternate ease-in-out -8s; opacity: 0.4; }
+.ray-7 { transform: translateX(-50%) rotate(45deg); animation: rayRotate 32s infinite alternate ease-in-out -12s; opacity: 0.5; }
+.ray-8 { transform: translateX(-50%) rotate(10deg); animation: rayRotate 18s infinite alternate ease-in-out -4s; opacity: 0.8; width: 60px; }
+
+@keyframes rayRotate {
+    0% { transform: translateX(-50%) rotate(-40deg) skewX(-10deg); opacity: 0.2; }
+    50% { opacity: 0.4; }
+    100% { transform: translateX(-50%) rotate(40deg) skewX(10deg); opacity: 0.2; }
+}
+
+.dust-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.2;
+    filter: blur(1px);
+}
+
+/* Sample random particles */
+.particle-1 { width: 2px; height: 2px; top: 20%; left: 10%; animation: particleFloat 10s infinite; }
+.particle-2 { width: 3px; height: 3px; top: 50%; left: 80%; animation: particleFloat 15s infinite -2s; }
+.particle-3 { width: 1px; height: 1px; top: 10%; left: 40%; animation: particleFloat 12s infinite -5s; }
+.particle-4 { width: 4px; height: 4px; top: 80%; left: 30%; animation: particleFloat 20s infinite -8s; }
+.particle-5 { width: 2px; height: 2px; top: 40%; left: 60%; animation: particleFloat 14s infinite -12s; }
+.particle-6 { width: 3px; height: 3px; top: 70%; left: 90%; animation: particleFloat 18s infinite -3s; }
+.particle-7 { width: 1px; height: 1px; top: 30%; left: 20%; animation: particleFloat 11s infinite -7s; }
+.particle-8 { width: 2px; height: 2px; top: 60%; left: 50%; animation: particleFloat 16s infinite -15s; }
+.particle-9 { width: 3px; height: 3px; top: 90%; left: 10%; animation: particleFloat 13s infinite -1s; }
+.particle-10 { width: 2px; height: 2px; top: 15%; left: 75%; animation: particleFloat 19s infinite -6s; }
+
+@keyframes particleFloat {
+    0% { transform: translate(0, 0); opacity: 0; }
+    50% { opacity: 0.3; }
+    100% { transform: translate(100px, -100px); opacity: 0; }
+}

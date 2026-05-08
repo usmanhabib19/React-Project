@@ -1,7 +1,6 @@
 import React from 'react'
 import { Row, Col, Typography, Button } from 'antd'
-// import Ballpit from '../../../components/Ballpit'
-import GridDistortion from '../../../components/Ballpits/GridDistortion'
+import Ballpit from '../../../components/Ballpits/Ballpit'
 import GradientText from '../../../components/GradientText'
 
 
@@ -9,17 +8,23 @@ const { Title, Paragraph } = Typography
 
 const Hero = () => {
     return (
-        <main style={{ width: '100%', height: '100vh', position: 'relative', overflow: 'hidden', background: '#000' }}>
+        <main style={{ 
+            width: '100%', 
+            height: '100vh', 
+            position: 'relative', 
+            overflow: 'hidden', 
+            background: 'linear-gradient(135deg, #050510 0%, #1a0033 100%)' 
+        }}>
             {/* Grid Distortion Background */}
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
 
-                <GridDistortion
-                    imageSrc="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop"
-                    grid={10}
-                    mouse={0.1}
-                    strength={0.15}
-                    relaxation={0.9}
-                    className="custom-class"
+                <Ballpit 
+                    count={50}
+                    gravity={0.5}
+                    friction={0.998}
+                    wallBounce={0.95}
+                    followCursor={true}
+                    colors={[0x007CF0, 0x00DFD8]}
                 />
             </div>
 

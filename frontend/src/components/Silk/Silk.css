@@ -1,0 +1,86 @@
+.silk-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000428; /* Deep base */
+    z-index: 0;
+}
+
+/* Texture Overlay for Grain */
+.silk-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    z-index: 2;
+}
+
+.silk-layer {
+    position: absolute;
+    width: 250%;
+    height: 250%;
+    top: -75%;
+    left: -75%;
+    filter: blur(40px);
+    opacity: 0.8;
+    animation: silkFlow 15s infinite alternate ease-in-out;
+    mix-blend-mode: screen;
+}
+
+.silk-1 {
+    background: radial-gradient(circle at 30% 30%, #2b00ff 0%, transparent 60%);
+    animation-duration: 12s;
+}
+
+.silk-2 {
+    background: radial-gradient(circle at 70% 60%, #6c63ff 0%, transparent 60%);
+    animation-duration: 18s;
+    animation-delay: -4s;
+}
+
+.silk-3 {
+    background: radial-gradient(circle at 40% 80%, #0000ff 0%, transparent 60%);
+    animation-duration: 15s;
+    animation-delay: -7s;
+}
+
+.silk-4 {
+    background: linear-gradient(135deg, #1a00aa 0%, transparent 50%);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    animation: none;
+    opacity: 1;
+}
+
+.silk-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes silkFlow {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1) skewX(0deg);
+    }
+    50% {
+        transform: translate(5%, 10%) rotate(10deg) scale(1.2) skewX(5deg);
+    }
+    100% {
+        transform: translate(-5%, -5%) rotate(-10deg) scale(0.8) skewX(-5deg);
+    }
+}

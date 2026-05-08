@@ -728,11 +728,21 @@ const Ballpit = ({ className = '', followCursor = true, ...props }) => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        spheresInstanceRef.current = createBallpit(canvas, { followCursor, ...props });
+        try {
+            spheresInstanceRef.current = createBallpit(canvas, { followCursor, ...props });
+        } catch (error) {
+            console.error("Ballpit failed to initialize:", error);
+            // Fallback: make canvas invisible if it fails
+            canvas.style.display = 'none';
+        }
 
         return () => {
             if (spheresInstanceRef.current) {
-                spheresInstanceRef.current.dispose();
+                try {
+                    spheresInstanceRef.current.dispose();
+                } catch (e) {
+                    console.error("Ballpit disposal error:", e);
+                }
             }
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -6,8 +6,8 @@ import { Row, Col, Typography, Form, Input, Button, message, Card, Divider, Chec
 import { MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone, LoginOutlined } from '@ant-design/icons'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/Auth'
-import GridDistortion from '../../components/Ballpits/GridDistortion'
 import GradientText from '../../components/GradientText'
+import '../../scss/_auth.scss'
 
 const { Title, Text } = Typography
 
@@ -75,19 +75,14 @@ const Login = () => {
 
     return (
         <main className="login-bg">
-            {/* Background Effect */}
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                <GridDistortion
-                    imageSrc="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
-                    grid={15}
-                    mouse={0.1}
-                    strength={0.15}
-                    relaxation={0.9}
-                />
-            </div>
+            <div className="premium-gradient-bg"></div>
 
             <Row justify="center" align="middle" style={{ minHeight: '100vh', width: '100%', position: 'relative', zIndex: 1, padding: '24px 0' }}>
-                <Col xs={23} sm={18} md={12} lg={8} xl={6}>
+                {/* Decorative Blobs */}
+                <div className="auth-glow auth-glow-1"></div>
+                <div className="auth-glow auth-glow-2"></div>
+
+                <Col xs={23} sm={18} md={12} lg={10} xl={8}>
 
                     <Card className="login-card" bordered={false}>
 
@@ -97,7 +92,7 @@ const Login = () => {
                                 <LoginOutlined />
                             </div>
                             <Title level={2} className="login-title">
-                                <GradientText colors={["#6c63ff", "#a78bfa", "#6c63ff"]} animationSpeed={3}>
+                                <GradientText colors={["#60a5fa", "#a78bfa", "#60a5fa"]} animationSpeed={3}>
                                     Welcome Back
                                 </GradientText>
                             </Title>
@@ -178,8 +173,8 @@ const Login = () => {
                             {/* Register Link */}
                             <Divider className="login-divider" />
                             <div className="login-register-link" style={{ textAlign: 'center' }}>
-                                <Text type="secondary">New here? </Text>
-                                <Link to="/auth/register">Create an account</Link>
+                                <Text style={{ color: 'white' }}>New here?&nbsp;</Text>
+                                <Link to="/auth/register">  Create an account</Link>
                             </div>
 
                         </Form>

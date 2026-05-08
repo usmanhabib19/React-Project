@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Row, Col, Typography, Form, Input, Button, message, Card, Divider, Space } from 'antd'
 import { UserOutlined, MailOutlined, PhoneOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone, UserAddOutlined } from '@ant-design/icons'
 import { Link, useNavigate } from 'react-router-dom'
-import GridDistortion from '../../components/Ballpits/GridDistortion'
 import GradientText from '../../components/GradientText'
 
 // CSS
@@ -70,18 +69,13 @@ const Register = () => {
 
     return (
         <main className="register-bg">
-            {/* Background Effect */}
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                <GridDistortion
-                    imageSrc="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=1887&auto=format&fit=crop"
-                    grid={15}
-                    mouse={0.1}
-                    strength={0.15}
-                    relaxation={0.9}
-                />
-            </div>
+            <div className="premium-gradient-bg"></div>
 
             <Row justify="center" align="middle" style={{ minHeight: '100vh', width: '100%', position: 'relative', zIndex: 1, padding: '40px 0' }}>
+                {/* Decorative Blobs */}
+                <div className="auth-glow auth-glow-1"></div>
+                <div className="auth-glow auth-glow-3"></div>
+
                 <Col xs={23} sm={18} md={12} lg={10} xl={8}>
 
                     <Card className="register-card" bordered={false}>
@@ -91,7 +85,7 @@ const Register = () => {
                                 <UserAddOutlined />
                             </div>
                             <Title level={2} className="register-title">
-                                <GradientText colors={["#6c63ff", "#a78bfa", "#6c63ff"]} animationSpeed={3}>
+                                <GradientText colors={["#60a5fa", "#a78bfa", "#60a5fa"]} animationSpeed={3}>
                                     Create Account
                                 </GradientText>
                             </Title>
@@ -206,7 +200,7 @@ const Register = () => {
                             <Divider className="register-divider" />
 
                             <div className="register-login-link" style={{ textAlign: 'center' }}>
-                                <Text type="secondary">Already have an account? </Text>
+                                <Text style={{ color: 'white' }}>Already have an account?&nbsp; </Text>
                                 <Link to="/auth/login">Sign in here</Link>
                             </div>
 
