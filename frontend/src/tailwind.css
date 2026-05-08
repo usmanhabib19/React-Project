@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #007CF0;
+  --color-secondary: #00DFD8;
+  --color-dark: #05051a;
+}
+
+/* Fires after Tailwind — beats Ant Design v6 CSS reset */
+html,
+body {
+  background: linear-gradient(135deg, #05051a 0%, #0d0628 40%, #130a2e 70%, #050520 100%) !important;
+  background-attachment: fixed !important;
+  color: white !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Ant Design overrides */
+.ant-layout,
+.ant-layout-content {
+  background: transparent !important;
+}
+
+/* Subtle animated star/noise texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(120, 80, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 124, 240, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 223, 216, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}

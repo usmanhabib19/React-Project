@@ -1,5 +1,19 @@
 @import "./src/scss/bootstrap";
 
+html, body {
+    background: linear-gradient(135deg, #050510 0%, #120a2e 100%) !important;
+    background-color: #050510 !important;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Force gradient theme for everything EXCEPT login/register backgrounds */
+body:not(:has(.login-bg)):not(:has(.register-bg)) {
+    background: linear-gradient(135deg, #050510 0%, #120a2e 100%) !important;
+}
+
 #root {
     display: flex;
     flex-direction: column;

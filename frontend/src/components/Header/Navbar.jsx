@@ -1,9 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Space, Typography } from 'antd'
-import { animate, stagger, splitText } from 'animejs'
 import { useAuth } from '../../context/Auth'
-import '../../scss/_navbar.scss'
 
 const { Text } = Typography
 
@@ -25,103 +23,71 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Animejs logo animation — same as your original
-    useEffect(() => {
-        const { chars } = splitText('.navbar-brand', { words: false, chars: true })
-        animate(chars, {
-            y: [{ to: 0, ease: 'outExpo', duration: 600 }, { to: 0, ease: 'outBounce', duration: 800, delay: 100 }],
-            rotate: { from: '-1turn', delay: 0 },
-            delay: stagger(50),
-            ease: 'inOutCirc',
-            loopDelay: 1000,
-            loop: true,
-        })
-    }, [])
-
-    // Animate nav links on mount
-    useEffect(() => {
-        animate('.nav-link-item', {
-            opacity: [0, 1],
-            y: [-20, 0],
-            delay: stagger(80, { start: 300 }),
-            duration: 600,
-            ease: 'outExpo',
-        })
-    }, [])
-
     return (
-        <nav className={`navbar navbar-expand-lg navbar-dark shadow-sm custom-navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
-            <div className="container">
-
-                {/* Logo — same class as your original so animejs works */}
-                <Link className="navbar-brand fw-bold" to="/">REACT</Link>
-
-                {/* Bootstrap toggler */}
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    aria-label="Toggle navigation"
+        <nav className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 py-4 ${scrolled ? 'bg-[#0a0a14]/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
+            <div className="container mx-auto px-4 flex items-center justify-between">
+                
+                {/* Logo */}
+                <Link 
+                    to="/" 
+                    className="text-2xl font-black tracking-tighter uppercase bg-gradient-to-r from-white to-[#00DFD8] bg-clip-text text-transparent hover:opacity-80 transition-opacity"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    REACT
+                </Link>
+
+                {/* Mobile Toggler */}
+                <button 
+                    className="lg:hidden text-white p-2"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+                    </svg>
                 </button>
 
-                {/* Nav Links — same structure as yours */}
-                <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`} id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
-                        <li className="nav-item nav-link-item">
-                            <NavLink className="nav-link" to="/">Home</NavLink>
+                {/* Nav Links */}
+                <div className={`lg:flex items-center gap-8 ${menuOpen ? 'absolute top-full left-0 right-0 bg-[#0a0a14] p-6 flex flex-col items-center' : 'hidden'}`}>
+                    <ul className="flex flex-col lg:flex-row items-center gap-6 list-none p-0 m-0">
+                        <li>
+                            <NavLink to="/" className={({ isActive }) => `text-sm font-medium transition-colors hover:text-white ${isActive ? 'text-white underline underline-offset-4' : 'text-white/70'}`}>Home</NavLink>
                         </li>
-
-                        <li className="nav-item nav-link-item">
-                            <NavLink className="nav-link" to="/about">About</NavLink>
+                        <li>
+                            <NavLink to="/about" className={({ isActive }) => `text-sm font-medium transition-colors hover:text-white ${isActive ? 'text-white underline underline-offset-4' : 'text-white/70'}`}>About</NavLink>
                         </li>
-
-                        <li className="nav-item nav-link-item">
-                            <NavLink className="nav-link" to="/contact">Contact</NavLink>
+                        <li>
+                            <NavLink to="/contact" className={({ isActive }) => `text-sm font-medium transition-colors hover:text-white ${isActive ? 'text-white underline underline-offset-4' : 'text-white/70'}`}>Contact</NavLink>
                         </li>
-
-                        {/* Dropdown — same as yours */}
-                        <li className="nav-item dropdown nav-link-item">
-                            <a
-                                className="nav-link dropdown-toggle"
-                                href="#"
-                                id="navbarDropdown"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
+                        <li className="relative group">
+                            <button className="text-sm font-medium text-white/70 hover:text-white flex items-center gap-1">
                                 Hooks
-                            </a>
-                            <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <li><Link className="dropdown-item" to="/hooks/useState">useState</Link></li>
-                                <li><Link className="dropdown-item" to="/hooks/useEffect">useEffect</Link></li>
-                                <li><Link className="dropdown-item" to="/hooks/useContext">useContext</Link></li>
-                                <li><Link className="dropdown-item" to="/hooks/useRef">useRef</Link></li>
-                                <li><Link className="dropdown-item" to="/hooks/useReducer">useReducer</Link></li>
-                            </ul>
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                            <div className="absolute top-full left-0 hidden group-hover:block bg-[#0f0f1e] border border-white/10 rounded-lg p-2 min-w-[160px] shadow-xl mt-2">
+                                <Link to="/hooks/useState" className="block px-4 py-2 text-xs text-white/70 hover:text-white hover:bg-white/5 rounded">useState</Link>
+                                <Link to="/hooks/useEffect" className="block px-4 py-2 text-xs text-white/70 hover:text-white hover:bg-white/5 rounded">useEffect</Link>
+                                <Link to="/hooks/useContext" className="block px-4 py-2 text-xs text-white/70 hover:text-white hover:bg-white/5 rounded">useContext</Link>
+                                <Link to="/hooks/useRef" className="block px-4 py-2 text-xs text-white/70 hover:text-white hover:bg-white/5 rounded">useRef</Link>
+                                <Link to="/hooks/useReducer" className="block px-4 py-2 text-xs text-white/70 hover:text-white hover:bg-white/5 rounded">useReducer</Link>
+                            </div>
                         </li>
-
                     </ul>
 
-                    {/* Auth section — same as yours */}
-                    <div className="d-flex">
+                    {/* Auth section */}
+                    <div className="flex items-center gap-4">
                         <Space size="small">
                             {isAuth ? (
                                 <>
-                                    <Text className="text-white">Welcome! {user.name}</Text>
-                                    <button className="btn btn-danger btn-sm" onClick={handleLogout}>Logout</button>
+                                    <Text className="text-white text-xs">Welcome! {user.name}</Text>
+                                    <button className="bg-red-500 hover:bg-red-600 text-white text-xs px-4 py-1.5 rounded-lg transition-colors" onClick={handleLogout}>Logout</button>
                                 </>
                             ) : (
                                 <>
-                                    <Link to="/auth/login" className="btn btn-success btn-sm">Login</Link>
-                                    <Link to="/auth/register" className="btn btn-info btn-sm">Register</Link>
+                                    <Link to="/auth/login" className="bg-green-600 hover:bg-green-700 text-white text-xs px-4 py-1.5 rounded-lg transition-colors">Login</Link>
+                                    <Link to="/auth/register" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-1.5 rounded-lg transition-colors">Register</Link>
                                 </>
                             )}
                         </Space>
                     </div>
-
                 </div>
             </div>
         </nav>

@@ -1,25 +1,21 @@
 import React from 'react'
-import { Row, Col, Typography, Button } from 'antd'
 import Ballpit from '../../../components/Ballpits/Ballpit'
 import GradientText from '../../../components/GradientText'
 
-
-const { Title, Paragraph } = Typography
-
 const Hero = () => {
     return (
-        <main style={{ 
-            width: '100%', 
-            height: '100vh', 
-            position: 'relative', 
-            overflow: 'hidden', 
-            background: '#050510' 
+        <main style={{
+            position: 'relative',
+            width: '100%',
+            height: '100vh',
+            overflow: 'hidden',
+            background: 'linear-gradient(135deg, #05051a 0%, #0d0628 40%, #130a2e 100%)',
         }}>
-            {/* Background Layer */}
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                <Ballpit 
-                    count={120}
-                    gravity={0.3}
+            {/* Background Layer - Ballpit */}
+            <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+                <Ballpit
+                    count={100}
+                    gravity={0.4}
                     friction={0.998}
                     wallBounce={0.9}
                     followCursor={true}
@@ -34,84 +30,106 @@ const Hero = () => {
             {/* Content Overlay */}
             <div style={{
                 position: 'relative',
-                zIndex: 1,
+                zIndex: 10,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 height: '100%',
                 textAlign: 'center',
                 padding: '0 24px',
-                background: 'radial-gradient(circle at center, rgba(5, 5, 16, 0.4) 0%, rgba(5, 5, 16, 0.8) 100%)',
-                pointerEvents: 'none' // Allow mouse to pass through to background
+                pointerEvents: 'none',
             }}>
-                <Row justify="center" style={{ pointerEvents: 'auto' }}>
-                    <Col xs={24} md={18} lg={14}>
-                        <div style={{
-                            padding: '4rem 2rem',
-                            borderRadius: '24px',
-                            background: 'rgba(255, 255, 255, 0.03)',
-                            backdropFilter: 'blur(10px)',
-                            border: '1px solid rgba(255, 255, 255, 0.1)',
-                            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-                            pointerEvents: 'auto' // Re-enable pointer events for the content card
+                <div style={{ pointerEvents: 'auto', width: '100%' }}>
+                    {/* Glassmorphism Card */}
+                    <div style={{
+                        padding: '60px 48px',
+                        borderRadius: '40px',
+                        background: 'rgba(255, 255, 255, 0.04)',
+                        backdropFilter: 'blur(24px)',
+                        WebkitBackdropFilter: 'blur(24px)',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        boxShadow: '0 40px 80px rgba(0,0,0,0.5), inset 0 0 40px rgba(255,255,255,0.02)',
+                        maxWidth: '700px',
+                        margin: '0 auto',
+                    }}>
+                        <h1 style={{
+                            fontSize: 'clamp(3rem, 8vw, 5.5rem)',
+                            fontWeight: 900,
+                            color: '#ffffff',
+                            margin: 0,
+                            lineHeight: 1.1,
+                            letterSpacing: '-0.03em',
                         }}>
+                            Future of
+                        </h1>
 
-                            <Title level={1} style={{
-                                color: '#fff',
-                                fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
-                                fontWeight: 800,
-                                marginBottom: '1.5rem',
-                                letterSpacing: '-0.02em',
-                                lineHeight: 1.1
-                            }}>
-                                Future of <GradientText
-                                    colors={["#007CF0", "#00DFD8", "#007CF0"]}
-                                    animationSpeed={10}
-                                    showBorder={false}
-                                >
+                        <div style={{ margin: '16px 0 32px' }}>
+                            <GradientText
+                                colors={["#007CF0", "#00DFD8", "#a855f7", "#007CF0"]}
+                                animationSpeed={4}
+                                showBorder={false}
+                            >
+                                <span style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)', fontWeight: 900, letterSpacing: '-0.03em' }}>
                                     Innovation
-                                </GradientText>
-                            </Title>
-
-                            <Paragraph style={{
-                                color: 'rgba(255,255,255,0.7)',
-                                fontSize: 'clamp(1.1rem, 2vw, 1.3rem)',
-                                marginBottom: '3rem',
-                                maxWidth: '600px',
-                                margin: '0 auto 3rem auto'
-                            }}>
-                                Experience the next generation of web design with our cutting-edge platform.
-                                Built for performance, designed for beauty.
-                            </Paragraph>
-                            <div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
-                                <Button type="primary" size="large" style={{
-                                    height: '56px',
-                                    padding: '0 40px',
-                                    fontSize: '1.1rem',
-                                    borderRadius: '12px',
-                                    fontWeight: 600,
-                                    background: 'linear-gradient(90deg, #007CF0, #00DFD8)',
-                                    border: 'none'
-                                }}>
-                                    Explore Now
-                                </Button>
-                                <Button size="large" ghost style={{
-                                    height: '56px',
-                                    padding: '0 40px',
-                                    fontSize: '1.1rem',
-                                    borderRadius: '12px',
-                                    fontWeight: 600,
-                                    borderColor: 'rgba(255,255,255,0.3)'
-                                }}>
-                                    View Documentation
-                                </Button>
-                            </div>
+                                </span>
+                            </GradientText>
                         </div>
-                    </Col>
-                </Row>
+
+                        <p style={{
+                            color: 'rgba(255,255,255,0.6)',
+                            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                            lineHeight: 1.7,
+                            maxWidth: '500px',
+                            margin: '0 auto 40px',
+                        }}>
+                            Experience the next generation of web design with our cutting-edge platform.
+                            Built for performance, designed for beauty.
+                        </p>
+
+                        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <button style={{
+                                height: '56px',
+                                padding: '0 40px',
+                                fontSize: '1rem',
+                                fontWeight: 700,
+                                borderRadius: '16px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                background: 'linear-gradient(90deg, #007CF0, #00DFD8)',
+                                color: '#fff',
+                                boxShadow: '0 8px 24px rgba(0,124,240,0.4)',
+                                transition: 'transform 0.2s, box-shadow 0.2s',
+                                letterSpacing: '0.02em',
+                            }}
+                            onMouseEnter={e => { e.target.style.transform = 'translateY(-2px)'; e.target.style.boxShadow = '0 12px 32px rgba(0,124,240,0.5)'; }}
+                            onMouseLeave={e => { e.target.style.transform = 'translateY(0)'; e.target.style.boxShadow = '0 8px 24px rgba(0,124,240,0.4)'; }}
+                            >
+                                Explore Now
+                            </button>
+                            <button style={{
+                                height: '56px',
+                                padding: '0 40px',
+                                fontSize: '1rem',
+                                fontWeight: 700,
+                                borderRadius: '16px',
+                                border: '1px solid rgba(255,255,255,0.2)',
+                                cursor: 'pointer',
+                                background: 'rgba(255,255,255,0.04)',
+                                color: '#fff',
+                                backdropFilter: 'blur(10px)',
+                                transition: 'background 0.2s, border-color 0.2s',
+                                letterSpacing: '0.02em',
+                            }}
+                            onMouseEnter={e => { e.target.style.background = 'rgba(255,255,255,0.08)'; e.target.style.borderColor = 'rgba(255,255,255,0.4)'; }}
+                            onMouseLeave={e => { e.target.style.background = 'rgba(255,255,255,0.04)'; e.target.style.borderColor = 'rgba(255,255,255,0.2)'; }}
+                            >
+                                View Documentation
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
-
     )
 }
 
