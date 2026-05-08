@@ -21,7 +21,7 @@ import {
     Plane as w,
     Raycaster as y
 } from 'three';
-import { RoomEnvironment as z } from 'three/examples/jsm/environments/RoomEnvironment.js';
+import { RoomEnvironment as z } from 'three/examples/jsm/environments/RoomEnvironment';
 
 class x {
     #e;
@@ -71,15 +71,31 @@ class x {
             this.canvas = document.getElementById(this.#e.id);
         } else {
             console.error('Three: Missing canvas or id parameter');
+            return;
         }
+
+        // Fix: Ensure canvas has dimensions before Three.js starts
+        if (this.canvas.clientWidth === 0 || this.canvas.clientHeight === 0) {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+
         this.canvas.style.display = 'block';
         const e = {
             canvas: this.canvas,
             powerPreference: 'high-performance',
+            antialias: true,
+            alpha: true,
+            failIfMajorPerformanceCaveat: false,
             ...(this.#e.rendererOptions ?? {})
         };
-        this.renderer = new s(e);
-        this.renderer.outputColorSpace = n;
+        
+        try {
+            this.renderer = new s(e);
+            this.renderer.outputColorSpace = n;
+        } catch (err) {
+            console.error('WebGL init error:', err);
+        }
     }
     #g() {
         if (!(this.#e.size instanceof Object)) {
@@ -730,10 +746,8 @@ const Ballpit = ({ className = '', followCursor = true, ...props }) => {
 
         try {
             spheresInstanceRef.current = createBallpit(canvas, { followCursor, ...props });
-        } catch (error) {
-            console.error("Ballpit failed to initialize:", error);
-            // Fallback: make canvas invisible if it fails
-            canvas.style.display = 'none';
+        } catch (err) {
+            console.error("Ballpit Init Error:", err);
         }
 
         return () => {
@@ -741,7 +755,7 @@ const Ballpit = ({ className = '', followCursor = true, ...props }) => {
                 try {
                     spheresInstanceRef.current.dispose();
                 } catch (e) {
-                    console.error("Ballpit disposal error:", e);
+                    console.error("Ballpit Disposal Error:", e);
                 }
             }
         };

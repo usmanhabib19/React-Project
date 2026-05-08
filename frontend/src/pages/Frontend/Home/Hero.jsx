@@ -13,18 +13,21 @@ const Hero = () => {
             height: '100vh', 
             position: 'relative', 
             overflow: 'hidden', 
-            background: 'linear-gradient(135deg, #050510 0%, #1a0033 100%)' 
+            background: '#050510' 
         }}>
-            {/* Grid Distortion Background */}
+            {/* Background Layer */}
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-
                 <Ballpit 
-                    count={50}
-                    gravity={0.5}
+                    count={120}
+                    gravity={0.3}
                     friction={0.998}
-                    wallBounce={0.95}
+                    wallBounce={0.9}
                     followCursor={true}
-                    colors={[0x007CF0, 0x00DFD8]}
+                    colors={[0x007CF0, 0x00DFD8, 0x7c3aed]}
+                    ambientIntensity={1.2}
+                    lightIntensity={250}
+                    minSize={0.6}
+                    maxSize={1.2}
                 />
             </div>
 
@@ -38,7 +41,7 @@ const Hero = () => {
                 height: '100%',
                 textAlign: 'center',
                 padding: '0 24px',
-                background: 'radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%)',
+                background: 'radial-gradient(circle at center, rgba(5, 5, 16, 0.4) 0%, rgba(5, 5, 16, 0.8) 100%)',
                 pointerEvents: 'none' // Allow mouse to pass through to background
             }}>
                 <Row justify="center" style={{ pointerEvents: 'auto' }}>
