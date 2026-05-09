@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Space, Typography } from 'antd'
+import { Space, Typography, Dropdown, Avatar } from 'antd'
 import { useAuth } from '../../context/Auth'
 
 const { Text } = Typography
@@ -15,6 +15,23 @@ const Navbar = () => {
         localStorage.removeItem('user')
         window.toastify('Logout successful', 'success')
     }
+
+    const userMenuItems = [
+        {
+            key: 'dashboard',
+            label: <Link to="/dashboard">Dashboard</Link>,
+            icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+        },
+        {
+            type: 'divider',
+        },
+        {
+            key: 'logout',
+            label: <span onClick={handleLogout}>Logout</span>,
+            icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>,
+            danger: true
+        }
+    ]
 
     // Scroll effect
     useEffect(() => {
@@ -76,10 +93,17 @@ const Navbar = () => {
                     <div className="flex items-center gap-4">
                         <Space size="small">
                             {isAuth ? (
-                                <>
-                                    <Text className="text-white text-xs">Welcome! {user.name}</Text>
-                                    <button className="bg-red-500 hover:bg-red-600 text-white text-xs px-4 py-1.5 rounded-lg transition-colors" onClick={handleLogout}>Logout</button>
-                                </>
+                                <Dropdown menu={{ items: userMenuItems }} trigger={['click']} placement="bottomRight">
+                                    <div className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1 rounded-full transition-colors border border-transparent hover:border-white/10 pr-3">
+                                        <Avatar className="bg-gradient-to-r from-indigo-500 to-purple-600 border border-white/20 shadow-lg text-white font-bold">
+                                            {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+                                        </Avatar>
+                                        <span className="text-white/90 text-sm font-medium hidden sm:block">
+                                            {user?.name?.split(' ')[0]}
+                                        </span>
+                                        <svg className="w-3 h-3 text-white/50 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                    </div>
+                                </Dropdown>
                             ) : (
                                 <>
                                     <Link to="/auth/login" className="bg-green-600 hover:bg-green-700 text-white text-xs px-4 py-1.5 rounded-lg transition-colors">Login</Link>
