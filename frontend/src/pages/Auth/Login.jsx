@@ -130,7 +130,7 @@ const Login = () => {
 
                             <div className="flex justify-between items-center mb-6">
                                 <Form.Item name="remember" valuePropName="checked" noStyle>
-                                    <Checkbox className="text-white/60">Remember me</Checkbox>
+                                    <Checkbox><span className="text-white/80">Remember me</span></Checkbox>
                                 </Form.Item>
                             </div>
 
