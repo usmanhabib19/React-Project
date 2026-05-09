@@ -4,6 +4,7 @@ import { MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone, LoginOutl
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/Auth'
 import GradientText from '../../components/GradientText'
+import ResetPassword from './ResetPassword'
 
 const { Title, Text } = Typography
 
@@ -96,8 +97,8 @@ const Login = () => {
                                 label={<span className="text-white/80 font-medium">Email Address</span>}
                                 rules={[{ required: true, message: 'Please enter your email' }, { type: 'email', message: 'Enter a valid email address' }]}
                             >
-                                <Input 
-                                    prefix={<MailOutlined className="text-white/40 mr-2" />} 
+                                <Input
+                                    prefix={<MailOutlined className="text-white/40 mr-2" />}
                                     placeholder="you@example.com"
                                     className="bg-white/5 border-white/10 rounded-2xl text-white py-3 hover:border-indigo-500/50 focus:border-indigo-500 focus:bg-white/10 transition-all shadow-inner"
                                 />
@@ -107,10 +108,14 @@ const Login = () => {
                                 name="password"
                                 label={
                                     <div className="w-full flex justify-between">
-                                        <span className="text-white/80 font-medium">Password</span>
-                                        <Link to="/forgot-password" hidden className="text-indigo-400 font-semibold hover:text-white transition-colors text-sm">
+                                        <span className="text-white/80 font-medium">Password:</span>
+                                        <a href="#" onClick={(e) => {
+                                            e.preventDefault()
+                                            const email = window.prompt("Enter your email to reset password:")
+                                            if (email) navigate(`/auth/reset-password/${email}`)
+                                        }} className="text-indigo-400 font-semibold hover:text-white transition-colors text-sm">
                                             Forgot password?
-                                        </Link>
+                                        </a>
                                     </div>
                                 }
                                 rules={[{ required: true, message: 'Please enter your password' }]}
